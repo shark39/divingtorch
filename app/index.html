@@ -8,9 +8,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
-      <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -19,9 +20,9 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <div ng-include="'views/toolbar.html'" ng-controller="ToolbarCtrl"></div>
     <!-- Add your site or application content here -->
-   
+    <div ng-include="'views/sidenav.html'" ng-controller="SidenavCtrl"></div>
     <div class="container">
     <div ng-view=""></div>
     </div>
@@ -46,6 +47,10 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/toolbar.js"></script>
+        <script src="scripts/controllers/sidenav.js"></script>
+        <script src="scripts/services/app.js"></script>
+        <script src="scripts/services/model.js"></script>
         <!-- endbuild -->
 </body>
 </html>

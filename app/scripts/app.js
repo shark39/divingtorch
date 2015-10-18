@@ -18,7 +18,7 @@ angular
     'ngTouch',
     'ngAria',
     'ngMaterial'
-  ])
+  ]).value('appName', 'Shark LED')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
