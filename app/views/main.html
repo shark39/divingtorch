@@ -1,5 +1,5 @@
-<div ng-cloak>
-  <md-content>
+<div ng-cloak layout="column" layout-fill>
+  <md-content ng-style="style" layout="column" layout-fill>
     {{model.applyTo}}
     <h3>
       RGB <span ng-attr-style="border: 1px solid #333; background: rgb({{color.red}},{{color.green}},{{color.blue}})">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -34,5 +34,9 @@
         <input flex type="number" ng-model="color.blue" aria-label="blue" aria-controls="blue-slider">
       </div>
     </div>
+
+    <md-button ng-click="applyColor()" class="md-primary" hide-gt-md>
+      Apply
+    </md-button>
     </md-content>
 </div>

@@ -89,6 +89,11 @@ module.exports = function (grunt) {
                 '/app/styles',
                 connect.static('./app/styles')
               ),
+              connect().use(function (req, res, next) {
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Access-Control-Allow-Method', '*');
+                next();
+              }),
               connect.static(appConfig.app)
             ];
           }
