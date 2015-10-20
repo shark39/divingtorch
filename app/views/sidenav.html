@@ -7,7 +7,7 @@
       Hide
     </md-button>
     <div layout="column">
-      <md-checkbox ng-repeat="(name,device) in devices" 
+      <md-checkbox ng-repeat="name in devices" 
       	ng-checked="exists(name)" 
       	ng-click="toggle(name)" 
       	aria-label="Checkbox {{name}}">

@@ -7,7 +7,7 @@
  * # communicator
  * Service in the sideNavApp.
  */
-angular.module('sideNavApp')
+angular.module('divingtorchApp')
   .service('communicator', function ($http) {
     var url = '192.168.0.105';
 

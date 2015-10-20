@@ -22,7 +22,7 @@ angular.module('divingtorchApp')
   $scope.applyColor = function() {
   	var color = $scope.color.blue + ($scope.color.green * 256) + ($scope.color.red * 256 * 256);
   	$scope.style = {'background-color' : $scope.getColor()};
-  	$http.post(app.url + "/pixel", {pixel: "[0:149]", rgb: color}, {headers: {  'Content-Type': 'application/json'  }});
+  	$http.post(app.url + "/pixel", {rgb: color, areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
   }
 
   $scope.model = $model;

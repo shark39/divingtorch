@@ -10,5 +10,5 @@
 angular.module('divingtorchApp')
   .value('app', {
   	name: "Shark LED",
-  	url: 'http://192.168.0.105:5000'
+  	url: 'http://192.168.0.105:9000'
   });

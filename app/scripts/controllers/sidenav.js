@@ -8,14 +8,16 @@
  * Controller of the sideNavApp
  */
 angular.module('divingtorchApp')
-  .controller('SidenavCtrl', function ($scope, $mdSidenav, $model) {
+  .controller('SidenavCtrl', function ($scope, $mdSidenav, $model, $http, app) {
     $scope.close = function () {
       $mdSidenav('left').close()
         .then(function () {});
     };
 
-    $scope.devices = $model.devices;
-
+    $http.get(app.url + '/areas').success(
+    	function(response){
+	    	$scope.devices = response.areas;	
+	    });	    
 
     $scope.exists = function(name) {
     	return $model.applyTo.indexOf(name) >= 0;
