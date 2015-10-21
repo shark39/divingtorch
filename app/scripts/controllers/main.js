@@ -37,7 +37,7 @@ angular.module('divingtorchApp')
   $scope.send = function() {
   	var color = parseInt($scope.color, 16);
   	$scope.style = {'background-color' : $scope.color};
-  	$http.post(app.url + "/pixel", {rgb: $scope.getRGBColor(), areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
+  	$http.post('http://' + app.host + ':' + app.port + "/pixel", {rgb: $scope.getRGBColor(), areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
   }
 
   $scope.model = $model;
