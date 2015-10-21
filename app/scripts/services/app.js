@@ -11,5 +11,5 @@ angular.module('divingtorchApp')
   .value('app', {
   	name: "Shark LED",
   	host: window.location.hostname,
-  	port: 5000
+  	port: 9000
   });
