@@ -11,5 +11,8 @@ angular.module('divingtorchApp')
   .value('app', {
   	name: "Shark LED",
   	host: window.location.hostname,
-  	port: 9000
+  	port: 9000,
+  	url: function () {
+  		return 'http://' + this.host + ':' + this.port + '/';
+  	}
   });

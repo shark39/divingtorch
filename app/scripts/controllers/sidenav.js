@@ -14,7 +14,7 @@ angular.module('divingtorchApp')
         .then(function () {});
     };
 
-    $http.get(app.url + '/areas').success(
+    $http.get(app.url() + 'areas').success(
     	function(response){
 	    	$scope.devices = response.areas;	
             $model.applyTo = response.areas;
