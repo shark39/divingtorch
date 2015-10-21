@@ -17,6 +17,7 @@ angular.module('divingtorchApp')
     $http.get(app.url + '/areas').success(
     	function(response){
 	    	$scope.devices = response.areas;	
+            $model.applyTo = response.areas;
 	    });	    
 
     $scope.exists = function(name) {
