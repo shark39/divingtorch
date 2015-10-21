@@ -14,8 +14,14 @@ angular.module('divingtorchApp')
     "#51B749", "#FBD75B", "#FFB878", "#FF887C", "#DC2127",
     "#DBADFF", "#E1E1E1"];
   $scope.applyType = "move";
-  $scope.getColor = function() {
-  	return $scope.color;  
+  $scope.getRGBColor = function() {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec($scope.color);
+      result = result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+      } : null;
+      return (result.r << 16) + (result.g << 8) + result.b;
   }
   $scope.style = {'background-color' : '#FFFFFF'};
 
@@ -30,8 +36,8 @@ angular.module('divingtorchApp')
 
   $scope.send = function() {
   	var color = parseInt($scope.color, 16);
-  	$scope.style = {'background-color' : $scope.getColor()};
-  	$http.post(app.url + "/pixel", {rgb: color, areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
+  	$scope.style = {'background-color' : $scope.color};
+  	$http.post(app.url + "/pixel", {rgb: $scope.getRGBColor(), areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
   }
 
   $scope.model = $model;
