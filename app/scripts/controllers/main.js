@@ -9,13 +9,17 @@
  */
 angular.module('divingtorchApp')
   .controller('MainCtrl', ['$scope', '$model', 'app', '$http', '$timeout', function ($scope, $model, app, $http, $timeout) {
-  $scope.color = '#000000';
-  $scope.colorList = ["#5484ED", "#A4BDFC", "#46D6DB", "#7AE7BF",
-    "#51B749", "#FBD75B", "#FFB878", "#FF887C", "#DC2127",
-    "#DBADFF", "#E1E1E1"];
+  $scope.color = '#FFFFFF';
+  $scope.brightness = 100;
+  $scope.colorList = [];
+  for(var i=0; i<360; i += 40) {
+    $scope.colorList.push(tinycolor("hsv(" + i + ",100%,100%)").toHexString());
+  }
+  $scope.colorList.push(tinycolor("hsv(0,0%,100%)").toHexString());
+  $scope.brightnessList = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0];
   $scope.applyType = "move";
-  $scope.getRGBColor = function() {
-      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec($scope.color);
+  $scope.getRGBColor = function(color) {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
       result = result ? {
           r: parseInt(result[1], 16),
           g: parseInt(result[2], 16),
@@ -24,6 +28,7 @@ angular.module('divingtorchApp')
       return (result.r << 16) + (result.g << 8) + result.b;
   }
   $scope.style = {'background-color' : '#FFFFFF'};
+  $scope.style2 = {'background-color' : '#FFFFFF'};
 
   $scope.applyStop = false;
   $scope.applyColor = function(color, type) {
@@ -35,10 +40,20 @@ angular.module('divingtorchApp')
   };
 
   $scope.send = function() {
-  	var color = parseInt($scope.color, 16);
-  	$scope.style = {'background-color' : $scope.color};
-  	$http.post('http://' + app.host + ':' + app.port + "/pixel", {rgb: $scope.getRGBColor(), areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
+    var color = tinycolor($scope.color).lighten(-100 + $scope.brightness).toHexString();
+  	$scope.style = {'background-color' :$scope.color};
+    $scope.style2 = {'background-color' :color};
+  	$http.post('http://' + app.host + ':' + app.port + "/pixel", {rgb: $scope.getRGBColor(color), areas: $model.applyTo}, {headers: {  'Content-Type': 'application/json'  }});
   }
+
+  $scope.setBrightness = function(value) {
+    $scope.brightness = value;
+    $scope.send($scope.color);
+  };
+
+  $scope.getBrightness = function(value) {
+    return 'rgba(0,0,0,' + (1-value/100) + ')'; 
+  };
 
   $scope.model = $model;
   

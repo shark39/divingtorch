@@ -10,7 +10,7 @@ angular.module('divingtorchApp')
   .directive('colorPicker', function () {
     return {
       template: '<div layout="row" layout-fill style="height:100px; min-height:20px"><div flex ng-repeat="colorEl in colorList" style="border: {{color == colorEl}}px solid #000;\
-      				background-color: {{colorEl}}" ontouchmove="selectColor(colorEl,\'move\')" ng-mousemove="selectColor(colorEl,\'move\')" ng-click="selectColor(colorEl,\'click\')"></div>\
+      				background-color: {{colorEl}}" ng-touchmove="selectColor(colorEl,\'move\')" ng-mousemove="selectColor(colorEl,\'move\')" ng-click="selectColor(colorEl,\'click\')"></div>\
       			</div>',
       restrict: 'E',
       scope: {

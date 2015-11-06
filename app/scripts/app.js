@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngAria',
-    'ngMaterial'
+    'ngMaterial',
+    'ngTouchmove'
   ]).value('appName', 'Shark LED')
   .config(function ($routeProvider) {
     $routeProvider
