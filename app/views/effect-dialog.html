@@ -1,0 +1,55 @@
+<md-dialog aria-label="Effect" ng-cloak>
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{effect.name}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div ng-if="creating">
+                    <md-checkbox ng-repeat="name in areas" ng-checked="exists(name)" ng-click="toggle(name)" aria-label="Checkbox {{name}}">
+                        {{name}}
+                    </md-checkbox>
+                </div>
+
+                <div ng-repeat="(name, value) in effect.parameters">
+                    <div ng-if="name == 'color'">
+                        Color <span ng-attr-style="border: 1px solid #333; background: rgb({{effect.parameters[name][0]*100}}%,{{effect.parameters[name][1]*100}}%,{{effect.parameters[name][2]*100}}%)">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <md-slider flex min="0" max="1" step="0.1" ng-model="effect.parameters[name][0]" aria-label="red" id="red-slider" class></md-slider>
+                        <md-slider flex min="0" max="1" step="0.1" ng-model="effect.parameters[name][1]" aria-label="green" id="green-slider" class></md-slider>
+                        <md-slider flex min="0" max="1" step="0.1" ng-model="effect.parameters[name][2]" aria-label="blue" id="blue-slider" class></md-slider>
+                    </div>
+                    <div ng-if="name == 'colors'">
+                        Color <span ng-attr-style="border: 1px solid #333; background: rgb({{effect.parameters[name][0]*100}}%,{{effect.parameters[name][1]*100}}%,{{effect.parameters[name][2]*100}}%)">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        <md-slider flex min="0" max="1" step="0.1" ng-model="effect.parameters[name][0]" aria-label="red" id="red-slider" class></md-slider>
+                        <md-slider flex min="0" max="1" step="0.1" ng-model="effect.parameters[name][1]" aria-label="green" id="green-slider" class></md-slider>
+                        <md-slider flex min="0" max="1" step="0.1" ng-model="effect.parameters[name][2]" aria-label="blue" id="blue-slider" class></md-slider>
+                    </div>
+                    <div ng-if="name == 'interval'">
+                        Interval: {{effect.parameters[name]}}
+                        <md-slider flex min="30" max="10000" step="100" ng-model="effect.parameters[name]" aria-label="red" id="red-slider" class></md-slider>
+                    </div>
+                    <div ng-if="name == 'width' || name == 'softWidth' || name == 'wavelength'">
+                        {{name}}: {{effect.parameters[name]}}
+                        <md-slider flex min="1" max="450" step="1" ng-model="effect.parameters[name]" aria-label="red" id="red-slider" class></md-slider>
+                    </div>
+                </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-raised" ng-click="cancel()" style="margin-right:20px;">
+                cancel
+            </md-button>
+            <md-button class="md-raised md-primary" ng-click="answer(true)">
+                apply
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

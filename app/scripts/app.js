@@ -22,7 +22,7 @@ angular
   ]).value('appName', 'Shark LED')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/main', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -32,7 +32,12 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/effects', {
+        templateUrl: 'views/effects.html',
+        controller: 'EffectsCtrl',
+        controllerAs: 'effects'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/effects'
       });
   });
