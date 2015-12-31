@@ -1,63 +1,108 @@
 <!doctype html>
-<html>
+  <html>
   <head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <!-- endbower -->
+
+    <!-- build:css styles/vendor.css -->
+        <!-- injector:bowercss -->
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+        <link rel="stylesheet" href="lib/font-awesome-bower/css/font-awesome.css">
+        <!-- endinjector -->
     <!-- endbuild -->
-    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- build:css styles/custom.css -->
+        <!-- injector:css -->
+        <link rel="stylesheet" href="css/customcordova.css">
+        <link rel="stylesheet" href="css/demo.css">
+        <!-- endinjector -->
     <!-- endbuild -->
+    <script src="cordova.js"></script>
   </head>
-  <body ng-app="divingtorchApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <!-- Add your site or application content here -->
-    <div ng-include="'views/sidenav.html'" ng-controller="SidenavCtrl"></div>
-    <md-content layout="column" layout-fill>
-        <div ng-include="'views/toolbar.html'" ng-controller="ToolbarCtrl"></div>
-        <div ng-view="" flex layout="column"></div>
-    </md-content>
-      
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/tinycolor/tinycolor.js"></script>
-    <script src="bower_components/ngtouchmove/src/ngTouchmove.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <!-- endbower -->
+
+  <body>
+    <!-- =================== Navigation bar =================== -->
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">
+                        sharkled controller
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-placeholder"></div>
+    <div role="main">
+        <header class="bs-header text-center" id="overview">
+            <div class="container">
+                <h1 id="app-heading">
+                    LED Control
+                </h1>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <section id="uiview" ui-view></section>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /.main -->
+
+    <footer class="footer">
+        <div class="container">
+            <p>Code licensed under <a href="https://github.com/keshavos/generator-angularjs-cordova/">MIT License</a>.</p>
+        </div>
+    </footer>
+
+    <!-- build:js scripts/vendor.js -->
+        <!-- injector:bowerjs -->
+        <script src="lib/jquery/dist/jquery.js"></script>
+        <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="lib/angular/angular.js"></script>
+        <script src="lib/angular-resource/angular-resource.js"></script>
+        <script src="lib/angular-mocks/angular-mocks.js"></script>
+        <script src="lib/angular-cookies/angular-cookies.js"></script>
+        <script src="lib/angular-animate/angular-animate.js"></script>
+        <script src="lib/angular-touch/angular-touch.js"></script>
+        <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+        <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="lib/angular-ui-utils/ui-utils.js"></script>
+        <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="lib/angular-aria/angular-aria.js"></script>
+        <script src="lib/angular-messages/angular-messages.js"></script>
+        <script src="lib/angular-material/angular-material.js"></script>
+        <script src="lib/angular-fontawesome/dist/angular-fontawesome.js"></script>
+        <script src="lib/underscore/underscore.js"></script>
+        <!-- endinjector -->
     <!-- endbuild -->
-      <script src="bower_components/angular-aria/angular-aria.js"></script>
-      <script src="bower_components/angular-material/angular-material.js"></script>
 
+    <!-- build:js scripts/custom.js -->
+        <!-- injector:js -->
+        <script src="js/config.js"></script>
+        <script src="js/application.js"></script>
+        <script src="modules/core/core.js"></script>
+        <script src="modules/core/speech.js"></script>
+        <script src="modules/core/config/routes.js"></script>
+        <script src="modules/core/services/js-speech-factory.js"></script>
+        <script src="modules/core/services/sharkled.js"></script>
+        <script src="modules/core/services/speechconversion.js"></script>
+        <script src="modules/core/directives/colorpicker.js"></script>
+        <script src="modules/core/directives/js-speech.js"></script>
+        <script src="modules/core/controllers/color.js"></script>
+        <script src="modules/core/controllers/effects.js"></script>
+        <script src="modules/core/controllers/home.js"></script>
+        <!-- endinjector -->
+    <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/toolbar.js"></script>
-        <script src="scripts/controllers/sidenav.js"></script>
-        <script src="scripts/services/app.js"></script>
-        <script src="scripts/services/model.js"></script>
-        <script src="scripts/services/communicator.js"></script>
-        <script src="scripts/directives/colorpicker.js"></script>
-        <script src="scripts/controllers/audioinput.js"></script>
-        <script src="scripts/services/audioinput.js"></script>
-        <script src="scripts/controllers/effects.js"></script>
-        <!-- endbuild -->
-</body>
+  </body>
 </html>
