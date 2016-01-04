@@ -11,7 +11,7 @@ angular
     .module('core')
     .config(['$stateProvider',
         '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider) {
+        function ($stateProvider, $urlRouterProvider) {
 
             $urlRouterProvider.otherwise('/');
 
@@ -26,42 +26,42 @@ angular
              * - When the path is `'/'`, route to home
              * */
             /**
- * @ngdoc event
- * @name core.config.route
- * @eventOf core.config
- * @description
- *
- * Define routes and the associated paths
- *
- * - When the state is `'effects'`, route to effects
- *
-*/
-/**
- * @ngdoc event
- * @name core.config.route
- * @eventOf core.config
- * @description
- *
- * Define routes and the associated paths
- *
- * - When the state is `'color'`, route to color
- *
-*/
-$stateProvider
-    .state('color', {
-        url: '/color',
-        templateUrl: 'modules/core/views/color.html',
-        controller: 'ColorController'
-    }).
-state('effects', {
-        url: '/effects',
-        templateUrl: 'modules/core/views/effects.html',
-        controller: 'EffectsController'
-    }).
-state('home', {
-                    url: '/',
-                    templateUrl: 'modules/core/views/home.html',
-                    controller: 'HomeController'
-                });
+             * @ngdoc event
+             * @name core.config.route
+             * @eventOf core.config
+             * @description
+             *
+             * Define routes and the associated paths
+             *
+             * - When the state is `'effects'`, route to effects
+             *
+             */
+            /**
+             * @ngdoc event
+             * @name core.config.route
+             * @eventOf core.config
+             * @description
+             *
+             * Define routes and the associated paths
+             *
+             * - When the state is `'color'`, route to color
+             *
+             */
+            $stateProvider
+                .state('color', {
+                    url: '/color',
+                    templateUrl: 'modules/core/views/color.html',
+                    controller: 'ColorController'
+                }).
+            state('effects', {
+                url: '/effects',
+                templateUrl: 'modules/core/views/effects.html',
+                controller: 'EffectsController'
+            }).
+            state('home', {
+                url: '/',
+                templateUrl: 'modules/core/views/home.html',
+                controller: 'HomeController'
+            });
         }
     ]);

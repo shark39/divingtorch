@@ -6,7 +6,7 @@
  * @description
  * # colorPicker
  */
-angular.module('divingtorchApp')
+angular.module('core')
   .directive('colorPicker', function () {
     return {
       template: '<div layout="row" layout-fill style="height:100px; min-height:20px"><div flex ng-repeat="colorEl in colorList" style="border: {{color == colorEl}}px solid #000;\
