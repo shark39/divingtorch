@@ -8,7 +8,11 @@ node_modules/
 .idea/
 /docs/
 
+/plugins/
+
 ##########Platforms##########
+
+platforms/android/
 
 
 ##########iOS##########
