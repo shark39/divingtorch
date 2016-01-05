@@ -1,4 +1,4 @@
-'use strict';
+/*global angular, console*/
 
 /**
  * @ngdoc function
@@ -8,76 +8,41 @@
  * Controller of the divingtorchApp
  */
 angular.module('core')
-    .controller('EffectsController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'Sharkled', function ($scope, $http, $mdDialog, $mdMedia, Sharkled) {
-        $scope.activeEffects = [];
-        $scope.effectChoices = [{
-                "name": "color",
-                "parameters": {
-                    "color": [1, 1, 1]
-                }
-        }, {
-                "name": "chase",
-                "parameters": {
-                    "interval": 1000,
-                    "width": 1,
-                    "softWidth": 0
-                }
-        }, {
-                "name": "colorsequence",
-                "parameters": {
-                    "interval": 1000,
-                    "colors": [[1, 0, 0], [0, 0, 1]]
-                }
-        }, {
-                "name": "rainbow",
-                "parameters": {
-                    "interval": 1000,
-                    "wavelength": 1
-                }
-        }, {
-                "name": "pulsate",
-                "parameters": {
-                    "interval": 1000,
-                    "wavelength": 1
-                }
-        }, {
-                "name": "strobe",
-                "parameters": {
-                    "interval": 1000
-                }
-        },
-            {
-                "name": "bucketColor",
-                "parameters": {
-                    "interval": 1000,
-                    "width": 10,
-                    "colors": [[1, 0, 0], [0, 0, 1]]
-                }
-        }];
+    .controller('EffectsController', ['$scope', '$http', '$mdDialog', '$mdMedia', 'Sharkled',
+                            function ($scope, $http, $mdDialog, $mdMedia, Sharkled) {
+            'use strict';
 
-        Sharkled.getAreas(
-            function (response) {
-                $scope.areas = response.areas;
-            });
+            $scope.activeEffects = [];
+            $scope.effectChoices = [];
+            $scope.areas = [];
+
+            Sharkled.getAreas(
+                function (response) {
+                    $scope.areas = response.areas;
+                }
+            );
+
+            Sharkled.getEffects(
+                function (response) {
+                    $scope.effectChoices = response.effects;
+                }
+            );
 
 
-
-        $scope.changeEffect = function (effect) {
-            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-            var oldParameters = angular.copy(effect.parameters);
-            $mdDialog.show({
+            $scope.changeEffect = function (effect) {
+                var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')),
+                    oldParameters = angular.copy(effect.parameters);
+                $mdDialog.show({
                     controller: function (scope) {
                         scope.effect = effect;
-
-                        scope.creating = scope.effect.areas == undefined;
-
+                        scope.creating = scope.effect.areas === undefined;
                         scope.effect.areas = scope.effect.areas || ["Wand"];
                         scope.areas = $scope.areas;
                         scope.cancel = function () {
-                            $mdDialog.cancel()
+                            $mdDialog.cancel();
                         };
                         scope.answer = function () {
-                            $mdDialog.hide(true)
+                            $mdDialog.hide(true);
                         };
                         scope.exists = function (name) {
                             return effect.areas.indexOf(name) >= 0;
@@ -95,30 +60,23 @@ angular.module('core')
                     targetEvent: null,
                     clickOutsideToClose: true,
                     fullscreen: useFullScreen
-                
-                
                 })
-                .then(function () {
-                    $http({
-                        method: 'POST',
-                        url: 'http://192.168.0.99:9000/effect/' + effect.name,
-                        data: JSON.stringify(effect)
-
-                    }).then(function successCallback(response) {
-                        effect.id = response['data'];
-                        $scope.changeEffect(effect);
-                        $scope.activeEffects.push(effect);
-                        $mdDialog.hide();
+                    .then(function () {
+                        Sharkled.postEffect(effect.name, effect, function callback(data) {
+                            effect.id = data.id;
+                            $scope.changeEffect(effect);
+                            $scope.activeEffects.push(effect);
+                            $mdDialog.hide();
+                        });
                     });
-                });
-        };
+            };
 
-        $scope.addEffect = function (id) {
-            var effect = angular.copy($scope.effectChoices[id]);
-            effect.paused = false;
-            $scope.changeEffect(effect);
-        };
-
+            $scope.addEffect = function (id) {
+                var effect = angular.copy($scope.effectChoices[id]);
+                effect.paused = false;
+                $scope.changeEffect(effect);
+            };
 
 
-            }]);
+
+        }]);

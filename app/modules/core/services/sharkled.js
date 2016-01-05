@@ -96,10 +96,12 @@ angular
                         });
                     },
                     postEffect: function (name, parameters, callback) {
+                        debugger;
                         $http({
                             method: 'POST',
                             url: baseUrl + '/effect/' + name,
-                            data: JSON.stringify(parameters)
+                            data: JSON.stringify(parameters),
+                            headers: {'Content-Type': 'application/json'}
 
                         }).then(function successCallback(response) {
                             callback(response.data);
