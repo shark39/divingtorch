@@ -15,6 +15,7 @@
     <md-list-item ng-repeat="effect in activeEffects" ng-click>
         <md-checkbox ng-model="effect.paused" ng-true-value="false" ng-false-value="true" aria-label="paused"></md-checkbox>
         <h3>{{effect.name}} </h3>
+        <p>{{effect.parameters.areas}}</p>
         <p>{{effect.parameters}}</p>
         <md-button class="md-secondary md-accent" ng-click="deleteEffect(effect.id)" aria-label="deleteeffect">X</md-button>
     </md-list-item>

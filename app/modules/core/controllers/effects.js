@@ -64,7 +64,7 @@ angular.module('core')
                     .then(function () {
                         Sharkled.postEffect(effect.name, effect, function callback(data) {
                             effect.id = data.id;
-                            $scope.activeEffects.push(effect);
+                            $scope.updateRunning();
                             $mdDialog.hide();
                         });
                     });
@@ -76,10 +76,15 @@ angular.module('core')
                 $scope.changeEffect(effect);
             };
                                 
-            $scope.reset = function() {
+            $scope.reset = function () {
                 Sharkled.reset();
-            }
-
-
-
+                $scope.updateRunning();
+            };
+                                
+            $scope.updateRunning = function () {
+                Sharkled.getRunningEffects(function (data) {
+                    $scope.activeEffects = data.controllers;
+                }
+                    );
+            };
         }]);
