@@ -17,7 +17,5 @@ describe('Controller: ColorController', function() {
         });
     }));
 
-    it('should ...', function() {
-
-    });
+   
 });

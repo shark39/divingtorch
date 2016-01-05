@@ -19,7 +19,5 @@ describe('HomeController', function() {
     }));
 
     //Tests
-    it('should have scope bound to the controller', function(){
-        expect(scope).toBeDefined();
-    });
+    
 });

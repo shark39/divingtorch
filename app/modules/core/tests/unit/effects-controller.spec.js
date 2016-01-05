@@ -17,7 +17,5 @@ describe('Controller: EffectsController', function() {
         });
     }));
 
-    it('should ...', function() {
-
-    });
+   
 });

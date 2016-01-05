@@ -96,7 +96,6 @@ angular
                         });
                     },
                     postEffect: function (name, parameters, callback) {
-                        debugger;
                         $http({
                             method: 'POST',
                             url: baseUrl + '/effect/' + name,
@@ -109,6 +108,16 @@ angular
                             console.log("error effects");
                         });
 
+                    },
+                    getRunningEffects: function (callback) {
+                        $http({
+                            method: 'GET',
+                            url: baseUrl + '/running'
+                        }).then(function successCallback(response) {
+                            callback(response.data);
+                        }, function errorCallback(response) {
+                            console.log("error running");
+                        });
                     }
                 }; // close api
             return api;

@@ -13,7 +13,4 @@ describe('Directive: Colorpicker', function () {
         scope = $rootScope.$new();
     }));
 
-    it('should ...', inject(function () {
-
-    }));
 });
